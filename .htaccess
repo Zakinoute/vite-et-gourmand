@@ -1,0 +1,41 @@
+# =========================================================
+# .htaccess – Racine du projet Vite & Gourmand
+# =========================================================
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Forcer HTTPS en production
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP_HOST} !^localhost [NC]
+    RewriteCond %{HTTP_HOST} !^127\.0\.0\.1 [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# En-têtes de sécurité globaux
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'"
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# Cacher les fichiers sensibles
+<FilesMatch "\.(env|sql|md|json|lock|gitignore|htpasswd)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protection contre le hotlinking d'images (optionnel)
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?votredomaine\.fr [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://localhost [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F,NC]
+</IfModule>

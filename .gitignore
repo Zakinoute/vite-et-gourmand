@@ -1,0 +1,22 @@
+# Dépendances
+vendor/
+node_modules/
+
+# Configuration sensible (ne pas versionner en production)
+# php/config/database.php
+# php/config/mongodb.php
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Uploads utilisateurs (si dossier créé)
+assets/img/uploads/
