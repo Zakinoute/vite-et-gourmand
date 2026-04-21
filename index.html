@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vite & Gourmand – Traiteur à Bordeaux depuis 25 ans. Découvrez nos menus pour tous vos événements." />
+  <title>Vite &amp; Gourmand – Traiteur à Bordeaux</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menus.html">Nos Menus</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="d-flex gap-2" id="nav-auth-buttons">
+          <a href="connexion.html" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-person me-1" aria-hidden="true"></i>Connexion
+          </a>
+          <a href="inscription.html" class="btn btn-light btn-sm">
+            <i class="bi bi-person-plus me-1" aria-hidden="true"></i>Inscription
+          </a>
+        </div>
+        <!-- Affiché après connexion via JS -->
+        <div class="d-flex gap-2 d-none" id="nav-user-buttons">
+          <span class="navbar-text me-2" id="nav-username"></span>
+          <a href="#" class="btn btn-outline-light btn-sm" id="nav-espace-link">Mon espace</a>
+          <button class="btn btn-light btn-sm" id="nav-logout-btn">
+            <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>Déconnexion
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-section d-flex align-items-center justify-content-center text-center text-white" role="banner">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <h1 class="display-3 fw-bold mb-3">Vite &amp; Gourmand</h1>
+      <p class="lead mb-4">Traiteur à Bordeaux depuis 25 ans &bull; Menus pour tous vos événements</p>
+      <a href="menus.html" class="btn btn-primary btn-lg me-2">
+        <i class="bi bi-book me-1" aria-hidden="true"></i>Découvrir nos menus
+      </a>
+      <a href="contact.html" class="btn btn-outline-light btn-lg">
+        <i class="bi bi-envelope me-1" aria-hidden="true"></i>Nous contacter
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- PRÉSENTATION ENTREPRISE -->
+    <section class="section-presentation py-5" aria-labelledby="titre-presentation">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <span class="badge badge-primary mb-3">Notre histoire</span>
+            <h2 id="titre-presentation" class="display-6 fw-bold mb-4">Julie &amp; José, passionnés depuis 1999</h2>
+            <p class="lead text-muted mb-4">
+              Fondée il y a plus de 25 ans à Bordeaux, <strong>Vite &amp; Gourmand</strong> est une entreprise
+              familiale portée par la passion de la gastronomie et le souci du détail.
+            </p>
+            <p class="text-muted mb-4">
+              Julie et José mettent tout leur savoir-faire au service de vos événements : repas de Noël,
+              Pâques, anniversaires, séminaires… Chaque prestation est préparée avec des produits frais
+              et locaux, pour vous offrir une expérience culinaire unique.
+            </p>
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="stat-card text-center p-3 rounded-3">
+                  <div class="stat-number">25+</div>
+                  <div class="stat-label">Années d'expérience</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stat-card text-center p-3 rounded-3">
+                  <div class="stat-number">500+</div>
+                  <div class="stat-label">Événements réalisés</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="presentation-img-wrapper rounded-4 overflow-hidden">
+              <img src="assets/img/equipe.jpg" alt="Julie et José, fondateurs de Vite et Gourmand"
+                   class="img-fluid w-100" loading="lazy"
+                   onerror="this.src='https://placehold.co/600x450/D4370C/white?text=Julie+%26+Jos%C3%A9'" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONNALISME -->
+    <section class="section-pro py-5 bg-light" aria-labelledby="titre-pro">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="badge badge-primary mb-2">Pourquoi nous choisir ?</span>
+          <h2 id="titre-pro" class="display-6 fw-bold">Notre professionnalisme à votre service</h2>
+          <p class="text-muted">Une équipe dédiée, des produits de qualité, une organisation irréprochable.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-award"></i></div>
+              <h3 class="h5 fw-bold">Qualité garantie</h3>
+              <p class="text-muted">Produits frais sélectionnés auprès de producteurs locaux bordelais.</p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-calendar-check"></i></div>
+              <h3 class="h5 fw-bold">Flexibilité totale</h3>
+              <p class="text-muted">Menus personnalisables adaptés à vos envies et à vos contraintes.</p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-truck"></i></div>
+              <h3 class="h5 fw-bold">Livraison à domicile</h3>
+              <p class="text-muted">Livraison partout à Bordeaux et ses alentours, directement chez vous.</p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-heart"></i></div>
+              <h3 class="h5 fw-bold">Fait maison</h3>
+              <p class="text-muted">Chaque plat est préparé à la main avec amour dans notre cuisine.</p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-shield-check"></i></div>
+              <h3 class="h5 fw-bold">Allergènes maîtrisés</h3>
+              <p class="text-muted">Liste complète des allergènes pour chaque plat, en toute transparence.</p>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-pro text-center p-4 h-100 rounded-4">
+              <div class="icon-pro mb-3" aria-hidden="true"><i class="bi bi-leaf"></i></div>
+              <h3 class="h5 fw-bold">Options végétariennes</h3>
+              <p class="text-muted">Menus végétariens et végan disponibles pour tous les régimes.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVIS CLIENTS -->
+    <section class="section-avis py-5" aria-labelledby="titre-avis">
+      <div class="container">
+        <div class="text-center mb-5">
+          <span class="badge badge-primary mb-2">Témoignages</span>
+          <h2 id="titre-avis" class="display-6 fw-bold">Avis de nos clients</h2>
+          <p class="text-muted">Ce que disent ceux qui nous ont fait confiance.</p>
+        </div>
+        <div class="row g-4" id="avis-container">
+          <!-- Chargé dynamiquement via JS depuis PHP -->
+          <div class="col-12 text-center" id="avis-loading">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Chargement des avis...</span>
+            </div>
+          </div>
+        </div>
+        <!-- Avis de secours si pas de connexion -->
+        <noscript>
+          <div class="col-md-4">
+            <div class="card-avis p-4 rounded-4">
+              <div class="stars mb-2" aria-label="5 étoiles sur 5">★★★★★</div>
+              <p class="text-muted fst-italic">"Excellent traiteur ! Tout le monde s'est régalé lors de notre repas de Noël. Je recommande vivement !"</p>
+              <strong>Marie L.</strong>
+            </div>
+          </div>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-cta py-5 bg-primary text-white text-center" aria-label="Appel à l'action">
+      <div class="container">
+        <h2 class="display-6 fw-bold mb-3">Prêt à passer commande ?</h2>
+        <p class="lead mb-4">Découvrez tous nos menus et commandez en ligne en quelques clics.</p>
+        <a href="menus.html" class="btn btn-light btn-lg">
+          <i class="bi bi-cart me-2" aria-hidden="true"></i>Voir nos menus
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-main bg-dark text-white pt-5 pb-3" role="contentinfo">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3">
+            <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+          </h3>
+          <p class="text-muted small">Traiteur à Bordeaux depuis 1999. Julie &amp; José vous accueillent avec passion.</p>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3">Horaires d'ouverture</h3>
+          <ul class="list-unstyled text-muted small" id="footer-horaires">
+            <!-- Chargé dynamiquement -->
+            <li>Lundi – Vendredi : 9h – 19h</li>
+            <li>Samedi : 9h – 17h</li>
+            <li>Dimanche : 10h – 13h</li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3">Liens utiles</h3>
+          <ul class="list-unstyled">
+            <li><a href="menus.html" class="text-muted text-decoration-none small">Nos menus</a></li>
+            <li><a href="contact.html" class="text-muted text-decoration-none small">Contact</a></li>
+            <li><a href="mentions-legales.html" class="text-muted text-decoration-none small">Mentions légales</a></li>
+            <li><a href="cgv.html" class="text-muted text-decoration-none small">Conditions générales de vente</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary" />
+      <p class="text-center text-muted small mb-0">
+        &copy; 2025 Vite &amp; Gourmand – Tous droits réservés |
+        <a href="mentions-legales.html" class="text-muted">Mentions légales</a> |
+        <a href="cgv.html" class="text-muted">CGV</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

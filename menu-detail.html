@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Détail du menu – Vite & Gourmand, traiteur à Bordeaux." />
+  <title>Détail du menu – Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="menus.html">Nos Menus</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex gap-2" id="nav-auth-buttons">
+          <a href="connexion.html" class="btn btn-outline-light btn-sm"><i class="bi bi-person me-1"></i>Connexion</a>
+          <a href="inscription.html" class="btn btn-light btn-sm"><i class="bi bi-person-plus me-1"></i>Inscription</a>
+        </div>
+        <div class="d-flex gap-2 d-none" id="nav-user-buttons">
+          <span class="navbar-text me-2" id="nav-username"></span>
+          <a href="#" class="btn btn-outline-light btn-sm" id="nav-espace-link">Mon espace</a>
+          <button class="btn btn-light btn-sm" id="nav-logout-btn"><i class="bi bi-box-arrow-right me-1"></i>Déconnexion</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="pt-nav">
+
+    <!-- Fil d'Ariane -->
+    <div class="bg-light border-bottom py-2">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane">
+          <ol class="breadcrumb mb-0 small">
+            <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="menus.html">Nos menus</a></li>
+            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-titre">Détail du menu</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Chargement -->
+    <div id="detail-loading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Chargement du menu...</span>
+      </div>
+      <p class="text-muted mt-2">Chargement du menu...</p>
+    </div>
+
+    <!-- Erreur -->
+    <div id="detail-error" class="container py-5 d-none">
+      <div class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        Menu introuvable. <a href="menus.html">Retour aux menus</a>
+      </div>
+    </div>
+
+    <!-- CONTENU MENU -->
+    <div id="detail-content" class="d-none">
+
+      <!-- ALERTE CONDITIONS – mise en évidence -->
+      <div class="container-fluid bg-warning bg-opacity-15 border-warning border-top border-bottom py-3 mb-0" id="alerte-conditions-bar">
+        <div class="container">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-exclamation-triangle-fill text-warning fs-4 flex-shrink-0" aria-hidden="true"></i>
+            <div>
+              <strong class="text-warning-emphasis">Conditions importantes à lire avant de commander :</strong>
+              <p class="mb-0 mt-1 text-dark" id="alerte-conditions-texte"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-5">
+        <div class="row g-5">
+
+          <!-- GALERIE + INFOS PRINCIPALES -->
+          <div class="col-lg-7">
+
+            <!-- Galerie -->
+            <div id="menu-galerie" class="carousel slide mb-4 rounded-4 overflow-hidden shadow" data-bs-ride="carousel" aria-label="Galerie du menu">
+              <div class="carousel-inner" id="carousel-inner">
+                <!-- Images injectées par JS -->
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#menu-galerie" data-bs-slide="prev" aria-label="Image précédente">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#menu-galerie" data-bs-slide="next" aria-label="Image suivante">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <!-- Titre et badges -->
+            <div class="mb-4">
+              <div class="d-flex flex-wrap gap-2 mb-2" id="menu-badges"></div>
+              <h1 class="display-6 fw-bold" id="menu-titre">—</h1>
+              <p class="lead text-muted" id="menu-description">—</p>
+            </div>
+
+            <!-- PLATS PAR CATÉGORIE -->
+            <section aria-labelledby="titre-plats">
+              <h2 id="titre-plats" class="h5 fw-bold border-bottom pb-2 mb-3">Composition du menu</h2>
+
+              <div class="mb-3" id="section-entrees">
+                <h3 class="h6 text-primary fw-semibold"><i class="bi bi-circle me-2"></i>Entrées</h3>
+                <ul class="list-group list-group-flush" id="liste-entrees"></ul>
+              </div>
+              <div class="mb-3" id="section-plats">
+                <h3 class="h6 text-primary fw-semibold"><i class="bi bi-circle-fill me-2"></i>Plats</h3>
+                <ul class="list-group list-group-flush" id="liste-plats"></ul>
+              </div>
+              <div class="mb-3" id="section-desserts">
+                <h3 class="h6 text-primary fw-semibold"><i class="bi bi-circle-half me-2"></i>Desserts</h3>
+                <ul class="list-group list-group-flush" id="liste-desserts"></ul>
+              </div>
+            </section>
+          </div>
+
+          <!-- SIDEBAR COMMANDE -->
+          <aside class="col-lg-5" aria-label="Informations de commande">
+
+            <!-- Carte prix / commande -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4 sticky-top" style="top:80px;">
+              <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                <h2 class="h5 fw-bold mb-0"><i class="bi bi-tag me-2"></i>Commander ce menu</h2>
+              </div>
+              <div class="card-body p-4">
+
+                <div class="mb-3 text-center">
+                  <span class="display-6 fw-bold text-primary" id="menu-prix">—</span>
+                  <span class="text-muted ms-1">pour</span>
+                  <span class="fw-semibold" id="menu-nb-min">—</span>
+                  <span class="text-muted">personne(s) minimum</span>
+                </div>
+
+                <ul class="list-unstyled mb-3">
+                  <li class="mb-2">
+                    <i class="bi bi-people-fill text-primary me-2"></i>
+                    <strong>Minimum :</strong> <span id="detail-nb-min">—</span> personne(s)
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-boxes text-primary me-2"></i>
+                    <strong>Stock disponible :</strong> <span id="detail-stock">—</span> commande(s)
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-palette text-primary me-2"></i>
+                    <strong>Thème :</strong> <span id="detail-theme">—</span>
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-leaf text-primary me-2"></i>
+                    <strong>Régime :</strong> <span id="detail-regime">—</span>
+                  </li>
+                </ul>
+
+                <!-- Réduction info -->
+                <div class="alert alert-info small py-2 mb-3">
+                  <i class="bi bi-info-circle me-1"></i>
+                  <strong>-10% de réduction</strong> pour toute commande avec 5 personnes de plus que le minimum !
+                </div>
+
+                <!-- Stock épuisé ou commande possible -->
+                <div id="stock-epuise" class="alert alert-danger d-none" role="alert">
+                  <i class="bi bi-x-circle me-2"></i>Ce menu n'est plus disponible à la commande.
+                </div>
+
+                <a href="commande.html" class="btn btn-primary btn-lg w-100" id="btn-commander" aria-label="Commander ce menu">
+                  <i class="bi bi-cart-plus me-2"></i>Commander
+                </a>
+
+                <!-- Si non connecté -->
+                <div id="msg-non-connecte" class="d-none mt-2">
+                  <p class="text-muted small text-center mb-2">Vous devez être connecté pour commander.</p>
+                  <div class="d-grid gap-2">
+                    <a href="connexion.html" class="btn btn-outline-primary btn-sm">Se connecter</a>
+                    <a href="inscription.html" class="btn btn-outline-secondary btn-sm">Créer un compte</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Allergènes -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+              <div class="card-body p-4">
+                <h2 class="h6 fw-bold mb-3"><i class="bi bi-shield-exclamation me-2 text-warning"></i>Allergènes</h2>
+                <div id="menu-allergenes" class="d-flex flex-wrap gap-2">
+                  <span class="text-muted small">Aucun allergène renseigné.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conditions détaillées -->
+            <div class="card border-warning border-2 rounded-4 mb-4">
+              <div class="card-body p-4">
+                <h2 class="h6 fw-bold mb-3 text-warning-emphasis">
+                  <i class="bi bi-exclamation-triangle-fill me-2 text-warning"></i>Conditions du menu
+                </h2>
+                <p class="small text-muted mb-0" id="detail-conditions">—</p>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-main bg-dark text-white pt-5 pb-3" role="contentinfo">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3"><i class="bi bi-fork-knife me-2"></i>Vite &amp; Gourmand</h3>
+          <p class="text-muted small">Traiteur à Bordeaux depuis 1999.</p>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3">Horaires d'ouverture</h3>
+          <ul class="list-unstyled text-muted small" id="footer-horaires">
+            <li>Lundi – Vendredi : 9h – 19h</li>
+            <li>Samedi : 9h – 17h</li>
+            <li>Dimanche : 10h – 13h</li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h3 class="h5 fw-bold mb-3">Liens utiles</h3>
+          <ul class="list-unstyled">
+            <li><a href="menus.html" class="text-muted text-decoration-none small">Nos menus</a></li>
+            <li><a href="contact.html" class="text-muted text-decoration-none small">Contact</a></li>
+            <li><a href="mentions-legales.html" class="text-muted text-decoration-none small">Mentions légales</a></li>
+            <li><a href="cgv.html" class="text-muted text-decoration-none small">CGV</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary" />
+      <p class="text-center text-muted small mb-0">
+        &copy; 2025 Vite &amp; Gourmand – Tous droits réservés
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/menus.js"></script>
+</body>
+</html>

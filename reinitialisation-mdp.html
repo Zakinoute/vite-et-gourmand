@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Réinitialiser votre mot de passe – Vite & Gourmand." />
+  <title>Mot de passe oublié – Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-dark bg-primary" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content" class="d-flex align-items-center justify-content-center py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+
+          <!-- ÉTAPE 1 : Demande de lien -->
+          <div id="step-email" class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <div class="auth-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-key-fill"></i>
+                </div>
+                <h1 class="h3 fw-bold">Mot de passe oublié ?</h1>
+                <p class="text-muted small">
+                  Saisissez votre email, nous vous enverrons un lien de réinitialisation.
+                </p>
+              </div>
+
+              <div id="alert-send-error" class="alert alert-danger d-none" role="alert">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                <span id="alert-send-error-msg">Email introuvable dans notre base.</span>
+              </div>
+              <div id="alert-send-success" class="alert alert-success d-none" role="alert">
+                <i class="bi bi-envelope-check me-2"></i>
+                Un lien de réinitialisation a été envoyé à votre adresse email.
+              </div>
+
+              <form id="form-send-reset" novalidate>
+                <div class="mb-4">
+                  <label for="reset-email" class="form-label fw-semibold">Adresse email</label>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="reset-email" name="email" class="form-control"
+                           required autocomplete="email" placeholder="votremail@exemple.fr" />
+                  </div>
+                  <div class="invalid-feedback">Veuillez saisir un email valide.</div>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary" id="btn-send-reset">
+                    <span id="btn-send-text">
+                      <i class="bi bi-send me-2"></i>Envoyer le lien
+                    </span>
+                    <span id="btn-send-spinner" class="d-none">
+                      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Envoi en cours...
+                    </span>
+                  </button>
+                </div>
+              </form>
+
+              <hr class="my-4" />
+              <p class="text-center text-muted small mb-0">
+                <a href="connexion.html" class="text-primary text-decoration-none">
+                  <i class="bi bi-arrow-left me-1"></i>Retour à la connexion
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 2 : Nouveau mot de passe (affiché si token dans l'URL) -->
+          <div id="step-reset" class="card border-0 shadow-sm rounded-4 d-none">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <div class="auth-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-lock-fill"></i>
+                </div>
+                <h1 class="h3 fw-bold">Nouveau mot de passe</h1>
+                <p class="text-muted small">Choisissez un nouveau mot de passe sécurisé.</p>
+              </div>
+
+              <div id="alert-token-error" class="alert alert-danger d-none" role="alert">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                Ce lien est invalide ou a expiré. Veuillez faire une nouvelle demande.
+              </div>
+              <div id="alert-reset-success" class="alert alert-success d-none" role="alert">
+                <i class="bi bi-check-circle me-2"></i>
+                Mot de passe réinitialisé ! <a href="connexion.html">Se connecter</a>
+              </div>
+
+              <form id="form-new-password" novalidate>
+                <input type="hidden" id="reset-token" name="token" />
+
+                <div class="mb-3">
+                  <label for="new-password" class="form-label fw-semibold">Nouveau mot de passe</label>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="new-password" name="password" class="form-control"
+                           required autocomplete="new-password" placeholder="••••••••••" />
+                    <button class="btn btn-outline-secondary" type="button" id="toggle-new-password"
+                            aria-label="Afficher/masquer">
+                      <i class="bi bi-eye" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <ul class="list-unstyled mt-2 small" id="new-password-criteria" aria-live="polite">
+                    <li id="new-crit-length" class="text-danger"><i class="bi bi-x-circle me-1"></i>10 caractères minimum</li>
+                    <li id="new-crit-upper" class="text-danger"><i class="bi bi-x-circle me-1"></i>Au moins une majuscule</li>
+                    <li id="new-crit-lower" class="text-danger"><i class="bi bi-x-circle me-1"></i>Au moins une minuscule</li>
+                    <li id="new-crit-digit" class="text-danger"><i class="bi bi-x-circle me-1"></i>Au moins un chiffre</li>
+                    <li id="new-crit-special" class="text-danger"><i class="bi bi-x-circle me-1"></i>Au moins un caractère spécial</li>
+                  </ul>
+                </div>
+
+                <div class="mb-4">
+                  <label for="new-password-confirm" class="form-label fw-semibold">Confirmer le mot de passe</label>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-lock-fill"></i></span>
+                    <input type="password" id="new-password-confirm" name="password_confirm"
+                           class="form-control" required autocomplete="new-password" placeholder="••••••••••" />
+                  </div>
+                  <div class="invalid-feedback">Les mots de passe ne correspondent pas.</div>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary" id="btn-reset-password">
+                    <i class="bi bi-check-circle me-2"></i>Réinitialiser mon mot de passe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center py-3" role="contentinfo">
+    <p class="text-muted small mb-0">&copy; 2025 Vite &amp; Gourmand</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

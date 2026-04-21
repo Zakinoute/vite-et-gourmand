@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Connectez-vous à votre espace Vite & Gourmand." />
+  <title>Connexion – Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="bg-light">
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+    </div>
+  </nav>
+
+  <main id="main-content" class="d-flex align-items-center justify-content-center py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5">
+
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-5">
+              <div class="text-center mb-4">
+                <div class="auth-icon mb-3" aria-hidden="true">
+                  <i class="bi bi-person-circle"></i>
+                </div>
+                <h1 class="h3 fw-bold">Connexion</h1>
+                <p class="text-muted small">Accédez à votre espace personnel.</p>
+              </div>
+
+              <!-- Alerte de redirection -->
+              <div id="alert-redirect" class="alert alert-info d-none small" role="alert">
+                <i class="bi bi-info-circle me-2"></i>Vous devez être connecté pour accéder à cette page.
+              </div>
+
+              <!-- Message succès inscription -->
+              <div id="alert-inscription-ok" class="alert alert-success d-none small" role="alert">
+                <i class="bi bi-check-circle me-2"></i>Compte créé avec succès ! Connectez-vous.
+              </div>
+
+              <!-- Erreur login -->
+              <div id="alert-error" class="alert alert-danger d-none" role="alert">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                <span id="alert-error-msg">Email ou mot de passe incorrect.</span>
+              </div>
+
+              <form id="form-connexion" novalidate>
+                <div class="mb-3">
+                  <label for="login-email" class="form-label fw-semibold">Adresse email</label>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="login-email" name="email" class="form-control"
+                           required autocomplete="email" placeholder="votremail@exemple.fr" />
+                  </div>
+                  <div class="invalid-feedback">Veuillez saisir un email valide.</div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <label for="login-password" class="form-label fw-semibold">Mot de passe</label>
+                    <a href="reinitialisation-mdp.html" class="small text-primary text-decoration-none">
+                      Mot de passe oublié ?
+                    </a>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-lock"></i></span>
+                    <input type="password" id="login-password" name="password" class="form-control"
+                           required autocomplete="current-password" placeholder="••••••••••" />
+                    <button class="btn btn-outline-secondary" type="button" id="toggle-password"
+                            aria-label="Afficher/masquer le mot de passe">
+                      <i class="bi bi-eye" id="toggle-password-icon" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div class="invalid-feedback">Le mot de passe est obligatoire.</div>
+                </div>
+
+                <div class="d-grid mt-4">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btn-login">
+                    <span id="btn-login-text">
+                      <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+                    </span>
+                    <span id="btn-login-spinner" class="d-none">
+                      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Connexion...
+                    </span>
+                  </button>
+                </div>
+              </form>
+
+              <hr class="my-4" />
+
+              <p class="text-center text-muted small mb-0">
+                Pas encore de compte ?
+                <a href="inscription.html" class="text-primary fw-semibold text-decoration-none">
+                  Créer un compte
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <p class="text-center text-muted small mt-3">
+            <a href="index.html" class="text-muted text-decoration-none">
+              <i class="bi bi-arrow-left me-1"></i>Retour à l'accueil
+            </a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER minimal -->
+  <footer class="text-center py-3" role="contentinfo">
+    <p class="text-muted small mb-0">
+      &copy; 2025 Vite &amp; Gourmand |
+      <a href="mentions-legales.html" class="text-muted">Mentions légales</a>
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

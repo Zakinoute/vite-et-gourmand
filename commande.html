@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Passer une commande – Vite & Gourmand, traiteur à Bordeaux." />
+  <title>Commander – Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="menus.html">Nos Menus</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex gap-2 d-none" id="nav-user-buttons">
+          <span class="navbar-text me-2" id="nav-username"></span>
+          <a href="#" class="btn btn-outline-light btn-sm" id="nav-espace-link">Mon espace</a>
+          <button class="btn btn-light btn-sm" id="nav-logout-btn"><i class="bi bi-box-arrow-right me-1"></i>Déconnexion</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="pt-nav">
+
+    <!-- Fil d'Ariane -->
+    <div class="bg-light border-bottom py-2">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane">
+          <ol class="breadcrumb mb-0 small">
+            <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="menus.html">Nos menus</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Commander</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <h1 class="display-6 fw-bold mb-2 text-center">Passer une commande</h1>
+      <p class="text-center text-muted mb-5">Remplissez les informations ci-dessous pour finaliser votre commande.</p>
+
+      <!-- Stepper -->
+      <div class="commande-stepper d-flex justify-content-center mb-5" aria-label="Étapes de la commande">
+        <div class="step active" data-step="1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Prestation</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Menu</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Récapitulatif</div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          <!-- ÉTAPE 1 – Informations prestation -->
+          <div id="step-1" class="commande-step">
+            <div class="card border-0 shadow-sm rounded-4">
+              <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                <h2 class="h5 fw-bold mb-0"><i class="bi bi-person-lines-fill me-2"></i>Étape 1 – Informations de prestation</h2>
+              </div>
+              <div class="card-body p-4">
+                <form id="form-step1" novalidate>
+
+                  <h3 class="h6 fw-semibold text-muted mb-3">Vos coordonnées</h3>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                      <label for="cmd-nom" class="form-label">Nom <span class="text-danger">*</span></label>
+                      <input type="text" id="cmd-nom" name="nom" class="form-control" required autocomplete="family-name" />
+                      <div class="invalid-feedback">Le nom est obligatoire.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cmd-prenom" class="form-label">Prénom <span class="text-danger">*</span></label>
+                      <input type="text" id="cmd-prenom" name="prenom" class="form-control" required autocomplete="given-name" />
+                      <div class="invalid-feedback">Le prénom est obligatoire.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cmd-email" class="form-label">Email <span class="text-danger">*</span></label>
+                      <input type="email" id="cmd-email" name="email" class="form-control" required autocomplete="email" />
+                      <div class="invalid-feedback">Un email valide est obligatoire.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cmd-gsm" class="form-label">Téléphone (GSM) <span class="text-danger">*</span></label>
+                      <input type="tel" id="cmd-gsm" name="gsm" class="form-control" required
+                             pattern="^(\+33|0)[0-9]{9}$" autocomplete="tel"
+                             placeholder="Ex: 0612345678" />
+                      <div class="invalid-feedback">Numéro de téléphone invalide.</div>
+                    </div>
+                  </div>
+
+                  <h3 class="h6 fw-semibold text-muted mb-3">Détails de la prestation</h3>
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="cmd-adresse" class="form-label">Adresse de livraison <span class="text-danger">*</span></label>
+                      <input type="text" id="cmd-adresse" name="adresse" class="form-control" required
+                             placeholder="N° et rue, code postal, ville" autocomplete="street-address" />
+                      <div class="invalid-feedback">L'adresse est obligatoire.</div>
+                      <div class="form-text" id="msg-livraison">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Un supplément de <strong>5 € + 0,59 €/km</strong> sera ajouté si la livraison est hors Bordeaux.
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cmd-date" class="form-label">Date de la prestation <span class="text-danger">*</span></label>
+                      <input type="date" id="cmd-date" name="date_prestation" class="form-control" required />
+                      <div class="invalid-feedback">La date de prestation est obligatoire.</div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="cmd-heure" class="form-label">Heure souhaitée <span class="text-danger">*</span></label>
+                      <input type="time" id="cmd-heure" name="heure_prestation" class="form-control" required />
+                      <div class="invalid-feedback">L'heure est obligatoire.</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary">
+                      Étape suivante <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 2 – Choix du menu et personnes -->
+          <div id="step-2" class="commande-step d-none">
+            <div class="card border-0 shadow-sm rounded-4">
+              <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                <h2 class="h5 fw-bold mb-0"><i class="bi bi-book me-2"></i>Étape 2 – Menu et nombre de personnes</h2>
+              </div>
+              <div class="card-body p-4">
+                <form id="form-step2" novalidate>
+
+                  <div class="mb-4">
+                    <label for="cmd-menu" class="form-label fw-semibold">Menu choisi <span class="text-danger">*</span></label>
+                    <select id="cmd-menu" name="menu_id" class="form-select" required>
+                      <option value="">-- Sélectionnez un menu --</option>
+                      <!-- Options injectées par JS -->
+                    </select>
+                    <div class="invalid-feedback">Veuillez choisir un menu.</div>
+                  </div>
+
+                  <!-- Infos menu sélectionné -->
+                  <div id="menu-info-box" class="alert alert-light border rounded-3 d-none mb-4">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <p class="mb-1 small"><strong>Prix de base :</strong> <span id="info-prix-base">—</span></p>
+                        <p class="mb-1 small"><strong>Minimum de personnes :</strong> <span id="info-nb-min">—</span></p>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="mb-1 small"><strong>Thème :</strong> <span id="info-theme">—</span></p>
+                        <p class="mb-1 small"><strong>Stock disponible :</strong> <span id="info-stock">—</span></p>
+                      </div>
+                    </div>
+                    <div class="mt-2 p-2 bg-warning bg-opacity-10 rounded small">
+                      <i class="bi bi-exclamation-triangle text-warning me-1"></i>
+                      <strong>Conditions :</strong> <span id="info-conditions">—</span>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label for="cmd-personnes" class="form-label fw-semibold">
+                      Nombre de personnes <span class="text-danger">*</span>
+                    </label>
+                    <input type="number" id="cmd-personnes" name="nb_personnes"
+                           class="form-control" min="1" required />
+                    <div class="invalid-feedback" id="personnes-feedback">
+                      Veuillez indiquer un nombre de personnes valide.
+                    </div>
+                    <div class="form-text" id="personnes-help"></div>
+                  </div>
+
+                  <!-- Réduction 10% -->
+                  <div id="reduction-info" class="alert alert-success d-none mb-3">
+                    <i class="bi bi-tag me-2"></i>
+                    <strong>-10% appliqué !</strong> Votre commande bénéficie de la réduction pour 5+ personnes au-delà du minimum.
+                  </div>
+
+                  <div class="d-flex justify-content-between mt-4">
+                    <button type="button" class="btn btn-outline-secondary" id="btn-retour-step1">
+                      <i class="bi bi-arrow-left me-2"></i>Retour
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      Voir le récapitulatif <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ÉTAPE 3 – Récapitulatif -->
+          <div id="step-3" class="commande-step d-none">
+            <div class="card border-0 shadow-sm rounded-4">
+              <div class="card-header bg-primary text-white rounded-top-4 py-3">
+                <h2 class="h5 fw-bold mb-0"><i class="bi bi-receipt me-2"></i>Étape 3 – Récapitulatif de commande</h2>
+              </div>
+              <div class="card-body p-4">
+
+                <h3 class="h6 fw-semibold text-muted mb-3">Vos informations</h3>
+                <ul class="list-group list-group-flush mb-4" id="recap-client"></ul>
+
+                <h3 class="h6 fw-semibold text-muted mb-3">Détails de la prestation</h3>
+                <ul class="list-group list-group-flush mb-4" id="recap-prestation"></ul>
+
+                <h3 class="h6 fw-semibold text-muted mb-3">Détail du prix</h3>
+                <table class="table table-sm mb-4" aria-label="Détail du prix">
+                  <tbody>
+                    <tr>
+                      <td>Prix du menu</td>
+                      <td class="text-end fw-semibold" id="recap-prix-menu">—</td>
+                    </tr>
+                    <tr id="recap-reduction-row" class="d-none text-success">
+                      <td>Réduction (–10%)</td>
+                      <td class="text-end fw-semibold" id="recap-reduction">—</td>
+                    </tr>
+                    <tr id="recap-livraison-row">
+                      <td>Frais de livraison</td>
+                      <td class="text-end fw-semibold" id="recap-livraison">—</td>
+                    </tr>
+                    <tr class="table-primary fw-bold">
+                      <td>TOTAL</td>
+                      <td class="text-end" id="recap-total">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <!-- CGV -->
+                <div class="form-check mb-4">
+                  <input class="form-check-input" type="checkbox" id="cmd-cgv" required />
+                  <label class="form-check-label small" for="cmd-cgv">
+                    J'accepte les <a href="cgv.html" target="_blank">conditions générales de vente</a>
+                    et j'ai bien pris connaissance des conditions spécifiques de ce menu.
+                    <span class="text-danger">*</span>
+                  </label>
+                  <div class="invalid-feedback">Vous devez accepter les CGV pour continuer.</div>
+                </div>
+
+                <!-- Message succès / erreur -->
+                <div id="commande-success" class="alert alert-success d-none" role="alert">
+                  <i class="bi bi-check-circle me-2"></i>
+                  <strong>Commande envoyée !</strong> Vous allez recevoir un email de confirmation. Merci !
+                </div>
+                <div id="commande-error" class="alert alert-danger d-none" role="alert">
+                  <i class="bi bi-exclamation-circle me-2"></i>
+                  <span id="commande-error-msg">Une erreur est survenue.</span>
+                </div>
+
+                <div class="d-flex justify-content-between mt-2">
+                  <button type="button" class="btn btn-outline-secondary" id="btn-retour-step2">
+                    <i class="bi bi-arrow-left me-2"></i>Retour
+                  </button>
+                  <button type="button" class="btn btn-primary btn-lg" id="btn-valider-commande">
+                    <i class="bi bi-check-circle me-2"></i>Confirmer la commande
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-main bg-dark text-white pt-4 pb-3" role="contentinfo">
+    <div class="container">
+      <p class="text-center text-muted small mb-0">
+        &copy; 2025 Vite &amp; Gourmand |
+        <a href="mentions-legales.html" class="text-muted">Mentions légales</a> |
+        <a href="cgv.html" class="text-muted">CGV</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/commande.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contactez Vite & Gourmand, traiteur à Bordeaux." />
+  <title>Contact – Vite &amp; Gourmand</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" aria-label="Navigation principale">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">
+        <i class="bi bi-fork-knife me-2" aria-hidden="true"></i>Vite &amp; Gourmand
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+        aria-controls="navbarMain" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="menus.html">Nos Menus</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="d-flex gap-2" id="nav-auth-buttons">
+          <a href="connexion.html" class="btn btn-outline-light btn-sm"><i class="bi bi-person me-1"></i>Connexion</a>
+          <a href="inscription.html" class="btn btn-light btn-sm"><i class="bi bi-person-plus me-1"></i>Inscription</a>
+        </div>
+        <div class="d-flex gap-2 d-none" id="nav-user-buttons">
+          <span class="navbar-text me-2" id="nav-username"></span>
+          <a href="#" class="btn btn-outline-light btn-sm" id="nav-espace-link">Mon espace</a>
+          <button class="btn btn-light btn-sm" id="nav-logout-btn"><i class="bi bi-box-arrow-right me-1"></i>Déconnexion</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content" class="pt-nav">
+    <div class="page-header bg-primary text-white py-5">
+      <div class="container text-center">
+        <h1 class="display-5 fw-bold">Nous contacter</h1>
+        <p class="lead">Une question ? Un projet ? Nous vous répondrons dans les plus brefs délais.</p>
+      </div>
+    </div>
+
+    <div class="container py-5">
+      <div class="row g-5">
+
+        <!-- FORMULAIRE -->
+        <div class="col-lg-7">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-5">
+              <h2 class="h4 fw-bold mb-4">Envoyez-nous un message</h2>
+
+              <div id="contact-success" class="alert alert-success d-none" role="alert">
+                <i class="bi bi-check-circle me-2"></i>
+                <strong>Message envoyé !</strong> Nous vous répondrons très prochainement à l'adresse indiquée.
+              </div>
+              <div id="contact-error" class="alert alert-danger d-none" role="alert">
+                <i class="bi bi-exclamation-circle me-2"></i>
+                <span id="contact-error-msg">Une erreur est survenue lors de l'envoi.</span>
+              </div>
+
+              <form id="form-contact" novalidate>
+                <div class="mb-3">
+                  <label for="contact-titre" class="form-label fw-semibold">
+                    Sujet / Titre <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" id="contact-titre" name="titre" class="form-control"
+                         required placeholder="Ex: Question sur les menus de Noël" />
+                  <div class="invalid-feedback">Le sujet est obligatoire.</div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="contact-email" class="form-label fw-semibold">
+                    Votre email <span class="text-danger">*</span>
+                  </label>
+                  <div class="input-group">
+                    <span class="input-group-text" aria-hidden="true"><i class="bi bi-envelope"></i></span>
+                    <input type="email" id="contact-email" name="email" class="form-control"
+                           required autocomplete="email" placeholder="votremail@exemple.fr" />
+                  </div>
+                  <div class="invalid-feedback">Un email valide est obligatoire pour vous répondre.</div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="contact-message" class="form-label fw-semibold">
+                    Votre message <span class="text-danger">*</span>
+                  </label>
+                  <textarea id="contact-message" name="description" class="form-control" rows="6"
+                            required minlength="20"
+                            placeholder="Décrivez votre demande en détail..."></textarea>
+                  <div class="invalid-feedback">Le message doit comporter au moins 20 caractères.</div>
+                  <div class="form-text text-end">
+                    <span id="msg-counter">0</span> / 1000 caractères
+                  </div>
+                </div>
+
+                <!-- Anti-spam honeypot caché -->
+                <div class="d-none" aria-hidden="true">
+                  <label for="website">Ne pas remplir</label>
+                  <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg" id="btn-contact">
+                    <span id="btn-contact-text">
+                      <i class="bi bi-send me-2"></i>Envoyer le message
+                    </span>
+                    <span id="btn-contact-spinner" class="d-none">
+                      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                      Envoi en cours...
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFOS CONTACT -->
+        <aside class="col-lg-5" aria-label="Informations de contact">
+          <h2 class="h4 fw-bold mb-4">Nos coordonnées</h2>
+
+          <div class="card border-0 shadow-sm rounded-4 mb-4">
+            <div class="card-body p-4">
+              <ul class="list-unstyled mb-0">
+                <li class="mb-3 d-flex align-items-start gap-3">
+                  <i class="bi bi-geo-alt-fill text-primary fs-5 flex-shrink-0" aria-hidden="true"></i>
+                  <div>
+                    <strong class="d-block">Adresse</strong>
+                    <span class="text-muted">12 rue des Saveurs, 33000 Bordeaux</span>
+                  </div>
+                </li>
+                <li class="mb-3 d-flex align-items-start gap-3">
+                  <i class="bi bi-telephone-fill text-primary fs-5 flex-shrink-0" aria-hidden="true"></i>
+                  <div>
+                    <strong class="d-block">Téléphone</strong>
+                    <a href="tel:+33556000000" class="text-muted text-decoration-none">05 56 00 00 00</a>
+                  </div>
+                </li>
+                <li class="d-flex align-items-start gap-3">
+                  <i class="bi bi-envelope-fill text-primary fs-5 flex-shrink-0" aria-hidden="true"></i>
+                  <div>
+                    <strong class="d-block">Email</strong>
+                    <a href="mailto:contact@vite-et-gourmand.fr" class="text-muted text-decoration-none">
+                      contact@vite-et-gourmand.fr
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-header fw-bold bg-primary text-white rounded-top-4 py-3">
+              <i class="bi bi-clock me-2"></i>Horaires d'ouverture
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-unstyled mb-0" id="contact-horaires">
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Lundi</span><span class="fw-semibold">9h – 19h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Mardi</span><span class="fw-semibold">9h – 19h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Mercredi</span><span class="fw-semibold">9h – 19h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Jeudi</span><span class="fw-semibold">9h – 19h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Vendredi</span><span class="fw-semibold">9h – 19h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom">
+                  <span>Samedi</span><span class="fw-semibold">9h – 17h</span>
+                </li>
+                <li class="d-flex justify-content-between py-2">
+                  <span>Dimanche</span><span class="fw-semibold">10h – 13h</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-main bg-dark text-white pt-4 pb-3" role="contentinfo">
+    <div class="container">
+      <p class="text-center text-muted small mb-0">
+        &copy; 2025 Vite &amp; Gourmand |
+        <a href="mentions-legales.html" class="text-muted">Mentions légales</a> |
+        <a href="cgv.html" class="text-muted">CGV</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/contact.js"></script>
+</body>
+</html>
