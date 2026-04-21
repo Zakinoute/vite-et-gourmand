@@ -1,0 +1,536 @@
+/* =========================================================
+   style.css – Vite & Gourmand
+   Palette :
+     Primaire  : #D4370C  (rouge-orangé, chaleureux)
+     Secondaire: #F4A261  (orange doux)
+     Sombre    : #2B2D42  (texte, dark)
+     Clair     : #F8F3EE  (fond crème)
+     Vert      : #2D6A4F  (végétarien / succès)
+   Typo : Système natif + Google Fonts (optionnel)
+   ========================================================= */
+
+/* ---- Variables CSS ---- */
+:root {
+  --vg-primary:    #D4370C;
+  --vg-primary-dk: #b02c08;
+  --vg-secondary:  #F4A261;
+  --vg-dark:       #2B2D42;
+  --vg-light:      #F8F3EE;
+  --vg-green:      #2D6A4F;
+  --vg-radius:     1rem;
+  --vg-shadow:     0 4px 20px rgba(0,0,0,.08);
+  --vg-transition: .25s ease;
+  --navbar-h:      72px;
+}
+
+/* ================================================================
+   RESET / BASE
+================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--vg-dark);
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+/* Saut vers le contenu (accessibilité) */
+.skip-link {
+  position: absolute;
+  top: -999px;
+  left: 0;
+  z-index: 9999;
+  background: var(--vg-primary);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 0 0 .5rem 0;
+  text-decoration: none;
+  font-weight: 600;
+}
+.skip-link:focus { top: 0; }
+
+/* Décalage pour navbar fixe */
+.pt-nav { padding-top: calc(var(--navbar-h) + 1rem); }
+
+/* ================================================================
+   COULEURS / UTILITAIRES BOOTSTRAP OVERRIDE
+================================================================= */
+.bg-primary  { background-color: var(--vg-primary) !important; }
+.btn-primary { background-color: var(--vg-primary); border-color: var(--vg-primary); }
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--vg-primary-dk);
+  border-color: var(--vg-primary-dk);
+}
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 .25rem rgba(212,55,12,.4);
+}
+.btn-outline-primary { color: var(--vg-primary); border-color: var(--vg-primary); }
+.btn-outline-primary:hover { background-color: var(--vg-primary); color: #fff; }
+
+.text-primary { color: var(--vg-primary) !important; }
+.border-primary { border-color: var(--vg-primary) !important; }
+.badge.badge-primary { background-color: var(--vg-primary); color: #fff; padding: .4em .8em; border-radius: 2rem; font-size: .75rem; }
+
+/* ================================================================
+   NAVBAR
+================================================================= */
+.navbar {
+  height: var(--navbar-h);
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  backdrop-filter: blur(4px);
+}
+.navbar-brand { font-size: 1.3rem; letter-spacing: -.3px; }
+.navbar-brand i { color: var(--vg-secondary); }
+
+.nav-link {
+  font-weight: 500;
+  transition: opacity var(--vg-transition);
+  position: relative;
+  padding-bottom: .3rem !important;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; right: 50%;
+  height: 2px;
+  background: var(--vg-secondary);
+  transition: left var(--vg-transition), right var(--vg-transition);
+}
+.nav-link:hover::after,
+.nav-link.active::after { left: 0; right: 0; }
+
+/* ================================================================
+   HERO SECTION (page d'accueil)
+================================================================= */
+.hero-section {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(43,45,66,.55), rgba(43,45,66,.7)),
+    url('../img/hero-bg.jpg') center/cover no-repeat;
+  position: relative;
+  padding-top: var(--navbar-h);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(212,55,12,.3), rgba(43,45,66,.4));
+}
+.hero-section h1 {
+  text-shadow: 0 2px 8px rgba(0,0,0,.4);
+  font-size: clamp(2rem, 6vw, 4rem);
+}
+.hero-section .lead { text-shadow: 0 1px 4px rgba(0,0,0,.3); }
+
+/* ================================================================
+   SECTIONS COMMUNES
+================================================================= */
+.page-header {
+  margin-top: var(--navbar-h);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+section { scroll-margin-top: var(--navbar-h); }
+
+/* ================================================================
+   PRÉSENTATION (accueil)
+================================================================= */
+.section-presentation { background-color: #fff; }
+
+.presentation-img-wrapper {
+  box-shadow: var(--vg-shadow);
+  aspect-ratio: 4/3;
+  background: var(--vg-light);
+}
+.presentation-img-wrapper img { object-fit: cover; height: 100%; width: 100%; }
+
+.stat-card {
+  background: var(--vg-light);
+  border-radius: var(--vg-radius);
+  transition: transform var(--vg-transition);
+}
+.stat-card:hover { transform: translateY(-3px); }
+.stat-number { font-size: 2rem; font-weight: 800; color: var(--vg-primary); line-height: 1; }
+.stat-label  { font-size: .85rem; color: #666; margin-top: .25rem; }
+
+/* ================================================================
+   CARTES PROFESSIONNALISME
+================================================================= */
+.card-pro {
+  background: #fff;
+  box-shadow: var(--vg-shadow);
+  transition: transform var(--vg-transition), box-shadow var(--vg-transition);
+  border: 1px solid rgba(0,0,0,.05);
+}
+.card-pro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(212,55,12,.12);
+}
+.icon-pro {
+  font-size: 2.5rem;
+  color: var(--vg-primary);
+  display: inline-block;
+  width: 70px; height: 70px;
+  line-height: 70px;
+  background: rgba(212,55,12,.08);
+  border-radius: 50%;
+}
+
+/* ================================================================
+   AVIS CLIENTS
+================================================================= */
+.card-avis {
+  background: var(--vg-light);
+  border-radius: var(--vg-radius);
+  border-left: 4px solid var(--vg-primary);
+  transition: transform var(--vg-transition);
+}
+.card-avis:hover { transform: translateY(-3px); }
+.stars { color: #F4A261; font-size: 1.2rem; letter-spacing: 2px; }
+
+/* ================================================================
+   CTA SECTION
+================================================================= */
+.section-cta { background: linear-gradient(135deg, var(--vg-primary), var(--vg-primary-dk)); }
+
+/* ================================================================
+   CARDS MENUS
+================================================================= */
+.card-menu {
+  transition: transform var(--vg-transition), box-shadow var(--vg-transition);
+}
+.card-menu:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(212,55,12,.15) !important;
+}
+.card-menu-img-wrapper { position: relative; overflow: hidden; }
+.card-menu-img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+  transition: transform .4s ease;
+}
+.card-menu:hover .card-menu-img { transform: scale(1.04); }
+.card-menu-badges { z-index: 2; }
+
+/* ================================================================
+   FILTRES SIDEBAR (menus)
+================================================================= */
+.form-range::-webkit-slider-thumb { background: var(--vg-primary); }
+.form-range::-moz-range-thumb     { background: var(--vg-primary); }
+.form-range:focus { box-shadow: none; }
+.form-range:focus::-webkit-slider-thumb { box-shadow: 0 0 0 3px rgba(212,55,12,.25); }
+
+/* ================================================================
+   STEPPER (commande)
+================================================================= */
+.commande-stepper {
+  gap: 0;
+  align-items: center;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+}
+.step-circle {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #dee2e6;
+  color: #6c757d;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--vg-transition), color var(--vg-transition);
+  border: 3px solid #dee2e6;
+}
+.step.active .step-circle {
+  background: var(--vg-primary);
+  border-color: var(--vg-primary);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(212,55,12,.2);
+}
+.step.completed .step-circle {
+  background: var(--vg-green);
+  border-color: var(--vg-green);
+  color: #fff;
+}
+.step-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #6c757d;
+  white-space: nowrap;
+}
+.step.active .step-label { color: var(--vg-primary); }
+.step.completed .step-label { color: var(--vg-green); }
+
+.step-line {
+  flex: 1;
+  height: 3px;
+  background: #dee2e6;
+  margin: 0 .5rem;
+  margin-bottom: 1.4rem;
+  min-width: 40px;
+  max-width: 100px;
+  transition: background var(--vg-transition);
+}
+
+/* ================================================================
+   FORMULAIRES
+================================================================= */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--vg-primary);
+  box-shadow: 0 0 0 .2rem rgba(212,55,12,.2);
+}
+.form-control.is-valid:focus,
+.form-select.is-valid:focus { box-shadow: 0 0 0 .2rem rgba(45,106,79,.2); }
+
+.form-check-input:checked {
+  background-color: var(--vg-primary);
+  border-color: var(--vg-primary);
+}
+.form-check-input:focus { box-shadow: 0 0 0 .2rem rgba(212,55,12,.2); }
+
+/* ================================================================
+   AUTHENTIFICATION (pages login / register)
+================================================================= */
+.auth-icon {
+  font-size: 3.5rem;
+  color: var(--vg-primary);
+}
+
+/* ================================================================
+   GALERIE CAROUSEL (détail menu)
+================================================================= */
+.carousel-img {
+  height: 380px;
+  object-fit: cover;
+}
+@media (max-width: 576px) {
+  .carousel-img { height: 220px; }
+}
+
+/* ================================================================
+   ESPACES (utilisateur / employé / admin)
+================================================================= */
+.list-group-item-action {
+  cursor: pointer;
+  transition: background var(--vg-transition), color var(--vg-transition);
+  border-left: 3px solid transparent;
+}
+.list-group-item-action.active {
+  background-color: rgba(212,55,12,.08) !important;
+  color: var(--vg-primary) !important;
+  border-left-color: var(--vg-primary);
+  font-weight: 600;
+}
+.list-group-item-action:hover:not(.active) {
+  background-color: var(--vg-light);
+}
+
+/* Tableau admin hover */
+.table-hover tbody tr:hover { background: rgba(212,55,12,.04); }
+
+/* ================================================================
+   ÉTOILES (avis)
+================================================================= */
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #dee2e6;
+  cursor: pointer;
+  padding: .1rem .2rem;
+  transition: color var(--vg-transition), transform var(--vg-transition);
+  line-height: 1;
+}
+.star-btn:hover,
+.star-btn:focus { color: #F4A261; transform: scale(1.2); outline: none; }
+.star-btn .bi-star-fill { color: #F4A261; }
+
+/* ================================================================
+   TIMELINE SUIVI COMMANDE
+================================================================= */
+.timeline-item { position: relative; padding-left: 1.5rem; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: .4rem; top: 1.6rem; bottom: -1rem;
+  width: 2px;
+  background: #dee2e6;
+}
+.timeline-item:last-child::before { display: none; }
+
+/* ================================================================
+   FOOTER
+================================================================= */
+.footer-main {
+  border-top: 3px solid var(--vg-primary);
+}
+.footer-main a:hover { color: var(--vg-secondary) !important; }
+
+/* ================================================================
+   PAGINATION
+================================================================= */
+.page-link { color: var(--vg-primary); }
+.page-link:hover { color: var(--vg-primary-dk); background: rgba(212,55,12,.08); }
+.page-item.active .page-link {
+  background-color: var(--vg-primary);
+  border-color: var(--vg-primary);
+}
+.page-item.active .page-link:focus { box-shadow: 0 0 0 .2rem rgba(212,55,12,.3); }
+
+/* ================================================================
+   BADGES CUSTOM
+================================================================= */
+.badge { font-weight: 600; letter-spacing: .3px; }
+
+/* ================================================================
+   CARDS GÉNÉRIQUES
+================================================================= */
+.card { border-radius: var(--vg-radius) !important; }
+.rounded-4 { border-radius: var(--vg-radius) !important; }
+
+/* Entête de card avec couleur primaire */
+.card-header.bg-primary { border-bottom: none; }
+
+/* ================================================================
+   CONTENUS PROSE (mentions légales, CGV)
+================================================================= */
+.prose h2 { color: var(--vg-primary); margin-top: 2rem; }
+.prose p, .prose li { color: #444; }
+.prose a { color: var(--vg-primary); }
+.prose a:hover { color: var(--vg-primary-dk); }
+
+/* ================================================================
+   SPINNER OVERLAY
+================================================================= */
+.spinner-overlay {
+  position: fixed; inset: 0;
+  background: rgba(255,255,255,.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9998;
+}
+
+/* ================================================================
+   ACCESSIBILITÉ – focus visible
+================================================================= */
+:focus-visible {
+  outline: 2px solid var(--vg-primary);
+  outline-offset: 2px;
+}
+a:focus-visible,
+button:focus-visible { outline: 2px solid var(--vg-primary); outline-offset: 3px; }
+
+/* Masquer outline pour la souris, garder pour le clavier */
+.btn:focus:not(:focus-visible) { box-shadow: none; }
+
+/* ================================================================
+   RESPONSIVE – Media Queries CUSTOM
+================================================================= */
+
+/* --- Tablette (≤ 991px) --- */
+@media (max-width: 991.98px) {
+  /* Sidebar filtres/nav passe en pleine largeur */
+  aside.col-lg-3,
+  aside.col-lg-2 {
+    position: static !important;
+  }
+
+  /* Stepper commande : labels masqués sur très petit écran */
+  .step-label { font-size: .7rem; }
+  .step-line   { min-width: 20px; }
+
+  /* Carousel moins haut */
+  .carousel-img { height: 280px; }
+
+  /* Hero un peu moins grand */
+  .hero-section { min-height: 80vh; }
+}
+
+/* --- Mobile (≤ 767px) --- */
+@media (max-width: 767.98px) {
+  /* Hero */
+  .hero-section { min-height: 70vh; padding: 2rem 1rem; text-align: center; }
+  .hero-section .btn { width: 100%; margin-bottom: .5rem; }
+
+  /* Stepper : réduire */
+  .commande-stepper { gap: 0; }
+  .step-circle       { width: 36px; height: 36px; font-size: .85rem; }
+  .step-label        { display: none; }
+  .step-line         { min-width: 24px; }
+
+  /* Sidebar admin/employé : passer en ligne horizontale scrollable */
+  aside.col-lg-2 .list-group {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    border-radius: .5rem;
+    gap: 0;
+  }
+  aside.col-lg-2 .list-group-item {
+    white-space: nowrap;
+    border-left: none !important;
+    border-bottom: 3px solid transparent;
+    flex-shrink: 0;
+  }
+  aside.col-lg-2 .list-group-item.active {
+    border-bottom-color: var(--vg-primary);
+    background: rgba(212,55,12,.08) !important;
+  }
+
+  /* Filtres commandes empilés */
+  #form-filtre-cmd .col-md-3,
+  #form-filtre-cmd .col-md-4,
+  #form-filtre-cmd .col-md-2 { width: 100%; }
+
+  /* Cartes commandes */
+  .d-flex.flex-wrap.gap-2 { gap: .5rem !important; }
+  .d-flex.flex-wrap.gap-2 .btn { font-size: .8rem; padding: .3rem .6rem; }
+
+  /* Page header */
+  .page-header { padding-top: 2rem; padding-bottom: 2rem; }
+  .page-header h1 { font-size: 1.6rem; }
+  .page-header .lead { font-size: 1rem; }
+
+  /* Stat cards accueil */
+  .stat-number { font-size: 1.6rem; }
+
+  /* Icon pro */
+  .icon-pro { font-size: 2rem; width: 56px; height: 56px; line-height: 56px; }
+
+  /* Footer */
+  .footer-main .col-lg-4 { text-align: center; }
+
+  /* Auth pages */
+  .card-body.p-5 { padding: 1.5rem !important; }
+
+  /* Récapitulatif commande */
+  #recap-client .list-group-item,
+  #recap-prestation .list-group-item { flex-direction: column; gap: .2rem; }
+}
+
+/* --- Très petit mobile (≤ 375px) --- */
+@media (max-width: 375px) {
+  .navbar-brand { font-size: 1rem; }
+  .hero-section h1 { font-size: 1.8rem; }
+  .display-6 { font-size: 1.5rem; }
+  .card-menu-img { height: 160px; }
+}
+
+/* ================================================================
+   PRINT (impression des commandes)
+================================================================= */
+@media print {
+  .navbar, .footer-main, .btn, nav[aria-label] { display: none !important; }
+  body { font-size: 11pt; }
+  .card { box-shadow: none !important; border: 1px solid #ddd !important; }
+}
