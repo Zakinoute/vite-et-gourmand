@@ -1,0 +1,30 @@
+# =========================================================
+# php/.htaccess – Protection du répertoire API
+# =========================================================
+
+# Interdire la navigation de répertoire
+Options -Indexes
+
+# Bloquer l'accès direct aux fichiers de configuration
+<FilesMatch "^(database|helpers|mongodb)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# N'autoriser que les requêtes depuis le même domaine (referer)
+# et bloquer les accès directs depuis le navigateur (optionnel / Apache 2.4)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+# En-têtes de sécurité HTTP
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
