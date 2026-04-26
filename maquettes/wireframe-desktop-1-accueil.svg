@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960" font-family="Arial,sans-serif">
+  <rect width="1440" height="960" fill="#FFFFFF"/>
+
+  <!-- NAVBAR -->
+  <rect width="1440" height="72" fill="#2B2D42"/>
+  <rect x="24" y="22" width="28" height="28" rx="14" fill="#D4370C"/>
+  <text x="62" y="42" font-size="18" font-weight="bold" fill="#FFFFFF">Vite &amp; Gourmand</text>
+  <text x="580" y="42" font-size="15" fill="#CCCCCC">Accueil</text>
+  <text x="660" y="42" font-size="15" fill="#FFFFFF">Menus</text>
+  <text x="740" y="42" font-size="15" fill="#CCCCCC">Contact</text>
+  <rect x="1260" y="18" width="130" height="36" rx="6" fill="#D4370C"/>
+  <text x="1325" y="42" font-size="14" fill="#FFFFFF" text-anchor="middle">Connexion</text>
+
+  <!-- HERO -->
+  <rect y="72" width="1440" height="400" fill="#888888"/>
+  <text x="720" y="230" font-size="48" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Vite &amp; Gourmand</text>
+  <text x="720" y="284" font-size="20" fill="#DDDDDD" text-anchor="middle">Traiteur à Bordeaux depuis 25 ans — Menus pour tous vos événements</text>
+  <rect x="490" y="318" width="200" height="48" rx="8" fill="#D4370C"/>
+  <text x="590" y="348" font-size="15" font-weight="bold" fill="#FFFFFF" text-anchor="middle">Découvrir les menus</text>
+  <rect x="712" y="318" width="160" height="48" rx="8" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="792" y="348" font-size="15" fill="#FFFFFF" text-anchor="middle">Nous contacter</text>
+
+  <!-- BANDEAU STATS -->
+  <rect y="472" width="1440" height="88" fill="#F8F3EE"/>
+  <line x1="480" y1="492" x2="480" y2="540" stroke="#DDDDDD" stroke-width="1"/>
+  <line x1="960" y1="492" x2="960" y2="540" stroke="#DDDDDD" stroke-width="1"/>
+  <text x="240" y="516" font-size="32" font-weight="bold" fill="#D4370C" text-anchor="middle">25 ans</text>
+  <text x="240" y="542" font-size="13" fill="#666666" text-anchor="middle">d'expérience à Bordeaux</text>
+  <text x="720" y="516" font-size="32" font-weight="bold" fill="#D4370C" text-anchor="middle">10+</text>
+  <text x="720" y="542" font-size="13" fill="#666666" text-anchor="middle">menus disponibles</text>
+  <text x="1200" y="516" font-size="32" font-weight="bold" fill="#D4370C" text-anchor="middle">500+</text>
+  <text x="1200" y="542" font-size="13" fill="#666666" text-anchor="middle">clients satisfaits</text>
+
+  <!-- SECTION PROFESSIONNALISME -->
+  <text x="720" y="608" font-size="26" font-weight="bold" fill="#2B2D42" text-anchor="middle">Notre professionnalisme</text>
+  <!-- Carte 1 -->
+  <rect x="80" y="630" width="380" height="130" rx="12" fill="#F5F5F5" stroke="#DDDDDD"/>
+  <rect x="110" y="650" width="44" height="44" rx="22" fill="#D4370C"/>
+  <text x="276" y="678" font-size="15" font-weight="bold" fill="#333333" text-anchor="middle">Qualité garantie</text>
+  <text x="276" y="700" font-size="13" fill="#888888" text-anchor="middle">Produits frais et locaux</text>
+  <text x="276" y="718" font-size="13" fill="#888888" text-anchor="middle">sélectionnés avec soin</text>
+  <!-- Carte 2 -->
+  <rect x="530" y="630" width="380" height="130" rx="12" fill="#F5F5F5" stroke="#DDDDDD"/>
+  <rect x="560" y="650" width="44" height="44" rx="22" fill="#D4370C"/>
+  <text x="726" y="678" font-size="15" font-weight="bold" fill="#333333" text-anchor="middle">Livraison ponctuelle</text>
+  <text x="726" y="700" font-size="13" fill="#888888" text-anchor="middle">Bordeaux et ses environs</text>
+  <text x="726" y="718" font-size="13" fill="#888888" text-anchor="middle">à l'heure convenue</text>
+  <!-- Carte 3 -->
+  <rect x="980" y="630" width="380" height="130" rx="12" fill="#F5F5F5" stroke="#DDDDDD"/>
+  <rect x="1010" y="650" width="44" height="44" rx="22" fill="#D4370C"/>
+  <text x="1176" y="678" font-size="15" font-weight="bold" fill="#333333" text-anchor="middle">Sur-mesure</text>
+  <text x="1176" y="700" font-size="13" fill="#888888" text-anchor="middle">Événements de toute taille</text>
+  <text x="1176" y="718" font-size="13" fill="#888888" text-anchor="middle">adaptés à vos besoins</text>
+
+  <!-- SECTION AVIS -->
+  <text x="720" y="808" font-size="26" font-weight="bold" fill="#2B2D42" text-anchor="middle">Avis de nos clients</text>
+  <!-- Avis 1 -->
+  <rect x="80" y="826" width="380" height="100" rx="12" fill="#FFFFFF" stroke="#D4370C" stroke-width="2"/>
+  <text x="100" y="852" font-size="16" fill="#F4A261">★★★★★</text>
+  <text x="100" y="874" font-size="12" fill="#555555">"Repas exceptionnel, livraison ponctuelle."</text>
+  <text x="100" y="894" font-size="12" font-weight="bold" fill="#2B2D42">Marie D.</text>
+  <text x="100" y="910" font-size="11" fill="#888888">Menu Classique Maison</text>
+  <!-- Avis 2 -->
+  <rect x="530" y="826" width="380" height="100" rx="12" fill="#FFFFFF" stroke="#D4370C" stroke-width="2"/>
+  <text x="550" y="852" font-size="16" fill="#F4A261">★★★★☆</text>
+  <text x="550" y="874" font-size="12" fill="#555555">"Très bon menu de Noël, présentation soignée."</text>
+  <text x="550" y="894" font-size="12" font-weight="bold" fill="#2B2D42">Pierre B.</text>
+  <text x="550" y="910" font-size="11" fill="#888888">Menu Noël Prestige</text>
+  <!-- Avis 3 -->
+  <rect x="980" y="826" width="380" height="100" rx="12" fill="#FFFFFF" stroke="#D4370C" stroke-width="2"/>
+  <text x="1000" y="852" font-size="16" fill="#F4A261">★★★★★</text>
+  <text x="1000" y="874" font-size="12" fill="#555555">"Bluffant pour un menu sans viande !"</text>
+  <text x="1000" y="894" font-size="12" font-weight="bold" fill="#2B2D42">Lucas G.</text>
+  <text x="1000" y="910" font-size="11" fill="#888888">Menu Noël Végétarien</text>
+
+  <!-- FOOTER -->
+  <rect y="940" width="1440" height="20" fill="#2B2D42"/>
+  <text x="720" y="955" font-size="11" fill="#AAAAAA" text-anchor="middle">Lun–Ven 09h–19h | Sam 09h–17h | Dim 10h–13h   ·   Mentions légales   ·   CGV</text>
+</svg>
