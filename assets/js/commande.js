@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const user = Auth.getUser();
 
+  /* ---- Mode édition ---- */
+  const urlParams = new URLSearchParams(window.location.search);
+  const editId    = urlParams.get('edit') ? parseInt(urlParams.get('edit')) : null;
+  let   editCommande = null; // données de la commande en cours de modification
+
   /* ---- Données temporaires entre étapes ---- */
   let dataStep1 = {};
   let dataStep2 = {};
@@ -29,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el && val) el.value = val;
   }
 
-  /* ---- Charger les menus dans le select étape 2 ---- */
+  /* ---- Charger les menus dans le select étape 2 (retourne une Promise) ---- */
   async function chargerMenus() {
     try {
       const res = await fetch(VG.apiUrl('menus/get-menus.php'));
@@ -252,10 +257,26 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Envoi...';
 
-    const payload = { ...dataStep1, ...dataStep2 };
+    let endpoint, payload, btnLabel;
+
+    if (editId) {
+      endpoint = 'commandes/modifier-commande.php';
+      payload  = {
+        commande_id:      editId,
+        adresse:          dataStep1.adresse,
+        date_prestation:  dataStep1.date_prestation,
+        heure_prestation: dataStep1.heure_prestation,
+        nb_personnes:     dataStep2.nb_personnes,
+      };
+      btnLabel = '<i class="bi bi-check-circle me-2"></i>Enregistrer les modifications';
+    } else {
+      endpoint = 'commandes/create-commande.php';
+      payload  = { ...dataStep1, ...dataStep2 };
+      btnLabel = '<i class="bi bi-check-circle me-2"></i>Confirmer la commande';
+    }
 
     try {
-      const res  = await fetch(VG.apiUrl('commandes/create-commande.php'), {
+      const res  = await fetch(VG.apiUrl(endpoint), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -264,20 +285,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (res.ok) {
         sucEl.classList.remove('d-none');
+        sucEl.querySelector('p, span, div') && (sucEl.textContent =
+          editId ? 'Commande modifiée avec succès ! Redirection...' : sucEl.textContent);
         errEl.classList.add('d-none');
         btn.classList.add('d-none');
         setTimeout(() => window.location.href = 'espace-utilisateur.html', 3000);
       } else {
-        errMsg.textContent = data.message || 'Erreur lors de la commande.';
+        errMsg.textContent = data.message || 'Erreur lors de l\'opération.';
         errEl.classList.remove('d-none');
         btn.disabled = false;
-        btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Confirmer la commande';
+        btn.innerHTML = btnLabel;
       }
     } catch {
       errMsg.textContent = 'Erreur de connexion au serveur.';
       errEl.classList.remove('d-none');
       btn.disabled = false;
-      btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Confirmer la commande';
+      btn.innerHTML = btnLabel;
     }
   });
 
@@ -297,12 +320,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function donneesDemoMenus() {
     return [
-      { id: 1, titre: 'Menu Noël Prestige', prix: 350, nb_personnes_min: 8, stock: 5, theme: 'noel', conditions: 'À commander 72h à l'avance.' },
-      { id: 2, titre: 'Menu Printemps', prix: 220, nb_personnes_min: 6, stock: 3, theme: 'paques', conditions: '' },
+      { id: 1, titre: 'Menu Noël Prestige', prix: 350, nb_personnes_min: 8, stock: 5, theme: 'noel', conditions: 'À commander 72h à l\'avance.' },
+      { id: 2, titre: 'Menu Printemps',     prix: 220, nb_personnes_min: 6, stock: 3, theme: 'paques', conditions: '' },
     ];
+  }
+
+  /* ================================================================
+     MODE ÉDITION  (?edit=ID)
+  ================================================================= */
+  async function chargerCommandePourEdit() {
+    if (!editId) return;
+
+    // Bannière de modification
+    const banner = document.createElement('div');
+    banner.className = 'alert alert-warning d-flex align-items-center gap-2 mb-4';
+    banner.setAttribute('role', 'status');
+    banner.innerHTML = `<i class="bi bi-pencil-square fs-5"></i>
+      <div>Vous modifiez la <strong>commande #${editId}</strong>.
+      Le menu ne peut pas être changé.</div>`;
+    document.getElementById('step-1')?.parentElement?.insertBefore(
+      banner, document.getElementById('step-1')
+    );
+
+    // Changer le titre de la page et le bouton final
+    const h1 = document.querySelector('h1, .commande-titre');
+    if (h1) h1.textContent = 'Modifier ma commande';
+    const btnValider = document.getElementById('btn-valider-commande');
+    if (btnValider) btnValider.innerHTML = '<i class="bi bi-check-circle me-2"></i>Enregistrer les modifications';
+
+    try {
+      const res = await fetch(VG.apiUrl(`commandes/get-commandes.php?id=${editId}`));
+      if (!res.ok) { alert('Commande introuvable.'); return; }
+      editCommande = await res.json();
+
+      // Pré-remplir étape 1
+      setVal('cmd-adresse', editCommande.adresse);
+      setVal('cmd-date',    editCommande.date_prestation?.split('T')[0] ?? editCommande.date_prestation);
+      setVal('cmd-heure',   editCommande.heure_prestation?.slice(0, 5) ?? '');
+
+    } catch { alert('Impossible de charger la commande.'); }
+  }
+
+  function preselectMenuEdit() {
+    if (!editCommande) return;
+    const select = document.getElementById('cmd-menu');
+    if (!select) return;
+    select.value = editCommande.menu_id;
+    select.disabled = true;
+    select.dispatchEvent(new Event('change'));
+    setVal('cmd-personnes', editCommande.nb_personnes);
+    calculerPrix();
+
+    // Légende sous le select
+    const hint = document.createElement('div');
+    hint.className = 'form-text text-warning';
+    hint.innerHTML = '<i class="bi bi-lock me-1"></i>Le menu ne peut pas être modifié.';
+    select.parentElement?.appendChild(hint);
   }
 
   /* ---- Init ---- */
   preremplir();
-  chargerMenus();
+  chargerMenus().then(() => {
+    if (editId) preselectMenuEdit();
+  });
+  if (editId) chargerCommandePourEdit();
 });
