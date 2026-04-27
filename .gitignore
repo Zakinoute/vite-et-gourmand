@@ -2,9 +2,9 @@
 vendor/
 node_modules/
 
-# Configuration sensible (ne pas versionner en production)
-# php/config/database.php
-# php/config/mongodb.php
+# Configuration sensible (ne pas versionner)
+.env
+php/config/local.php
 
 # IDE
 .idea/
