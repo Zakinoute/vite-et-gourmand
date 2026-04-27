@@ -6,6 +6,22 @@
 
 USE vite_et_gourmand;
 
+-- Nettoyage avant insertion (idempotent)
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE avis;
+TRUNCATE TABLE suivi_commandes;
+TRUNCATE TABLE commandes;
+TRUNCATE TABLE images_menu;
+TRUNCATE TABLE menu_plats;
+TRUNCATE TABLE plat_allergenes;
+TRUNCATE TABLE plats;
+TRUNCATE TABLE menus;
+TRUNCATE TABLE allergenes;
+TRUNCATE TABLE horaires;
+TRUNCATE TABLE tokens_reinitialisation;
+TRUNCATE TABLE users;
+SET FOREIGN_KEY_CHECKS = 1;
+
 -- =========================================================
 -- USERS
 -- Mots de passe (bcrypt) : tous = "Test1234!"
@@ -173,11 +189,11 @@ INSERT INTO menus (titre, description, theme, regime, nb_personnes_min, prix, st
   'Menu Classique Maison',
   'La valeur sûre de Vite & Gourmand. Salade de chèvre chaud, filet de bœuf Wellington et crème brûlée, cuisinés avec passion.',
   'classique', 'classique', 10, 380.00, 15,
-  'À commander au minimum 48 heures avant la prestation. Menu disponible toute l'année.'
+  'À commander au minimum 48 heures avant la prestation. Menu disponible toute l\'année.'
 ),
 (
   'Menu Corporate Prestige',
-  'Impressionnez vos collaborateurs et clients avec ce menu raffiné. Foie gras, pintade farcie et charlotte aux fraises pour un déjeuner d'affaires mémorable.',
+  'Impressionnez vos collaborateurs et clients avec ce menu raffiné. Foie gras, pintade farcie et charlotte aux fraises pour un déjeuner d\'affaires mémorable.',
   'evenement', 'classique', 15, 650.00, 4,
   'À commander au minimum 1 semaine avant la prestation. Prestation de service incluse sur demande. Devis personnalisé disponible.'
 ),

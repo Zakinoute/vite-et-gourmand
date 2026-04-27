@@ -1,0 +1,17 @@
+{
+  "name": "vite-et-gourmand/app",
+  "description": "Application traiteur Vite & Gourmand — ECF TP Développeur Web",
+  "type": "project",
+  "require": {
+    "php": ">=8.1",
+    "mongodb/mongodb": "^1.18"
+  },
+  "autoload": {
+    "psr-4": {
+      "ViteEtGourmand\\": "php/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

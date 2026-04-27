@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["php81", "php81Extensions.pdo", "php81Extensions.pdo_mysql", "php81Extensions.mongodb", "php81Extensions.mbstring", "php81Extensions.json", "php81Extensions.session", "apacheHttpd", "composer"]
+
+[phases.build]
+cmds = ["composer install --no-dev --optimize-autoloader"]
+
+[start]
+cmd = "apache2 -D FOREGROUND"
+
+[variables]
+APACHE_DOCUMENT_ROOT = "/app"

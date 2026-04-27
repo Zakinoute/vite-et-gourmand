@@ -4,9 +4,9 @@
 // Extension : mongodb (pecl) + library mongodb/mongodb
 // =========================================================
 
-define('MONGO_URI',    'mongodb://localhost:27017');
-define('MONGO_DB',     'vite_et_gourmand_stats');
-define('MONGO_COLL',   'commandes_stats');
+define('MONGO_URI',  getenv('MONGO_URI')  ?: 'mongodb://localhost:27017');
+define('MONGO_DB',   getenv('MONGO_DB')   ?: 'vite_et_gourmand_stats');
+define('MONGO_COLL', getenv('MONGO_COLL') ?: 'commandes_stats');
 
 function getMongoDB(): \MongoDB\Database
 {
